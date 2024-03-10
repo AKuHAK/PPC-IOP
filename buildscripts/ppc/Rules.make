@@ -20,7 +20,7 @@ PPC_INCS := -I$(PPC_SRC_DIR) -I$(PPC_INC_DIR)
 PPC_OPTFLAGS ?= -O1 -fno-delete-null-pointer-checks
 
 # Warnings:
-PPC_WARNFLAGS ?= -Wall 
+PPC_WARNFLAGS ?= -Wall
 
 # -fno-asynchronous-unwind-tables prevents the generation of .eh_frame
 

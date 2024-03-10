@@ -4,9 +4,9 @@
 #include <stdint.h>
 
 #define DEV_STORE 0x1
-#define DEV_LOAD  0x2
+#define DEV_LOAD 0x2
 
-#define PATCH_PREFIX  0x1
+#define PATCH_PREFIX 0x1
 #define PATCH_POSTFIX 0x2
 #define PATCH_REPLACE 0x3
 
@@ -23,13 +23,13 @@ void debug_dcr_set(uint16_t dcr, uint32_t value);
 void debug_ppc_reg_set(uint8_t reg, uint32_t value);
 void debug_ppc_sreg_set(uint8_t sreg, uint32_t value);
 
-//patch_type: PATCH_PREFIX, PATCH_POSTFIX, PATCH_REPLACE
-void debug_patch_dev_load(uint8_t patch_type, uint32_t addr, uint32_t len, void* func_ptr);
-void debug_patch_dev_store(uint8_t patch_type, uint32_t addr, uint32_t len, void* func_ptr);
+// patch_type: PATCH_PREFIX, PATCH_POSTFIX, PATCH_REPLACE
+void debug_patch_dev_load(uint8_t patch_type, uint32_t addr, uint32_t len, void *func_ptr);
+void debug_patch_dev_store(uint8_t patch_type, uint32_t addr, uint32_t len, void *func_ptr);
 
-//place branch after reset to debug_reset_handler()
+// place branch after reset to debug_reset_handler()
 void debug_hook_reset();
 void debug_reset_handler();
-void debug_run_on_reset(void* func);
+void debug_run_on_reset(void *func);
 
 #endif

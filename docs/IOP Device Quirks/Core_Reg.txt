@@ -21,10 +21,10 @@ flushed to memory and then the entire data cache is invalided.
 Store value in scratchpad mapping word 0 and update cache ctrl.
 
 0x144:
-Store value in scratchpad mapping word 1 and update cache ctrl. 
+Store value in scratchpad mapping word 1 and update cache ctrl.
 
 0x184:
-if rom_ver_emu is enabled, store/load value in/from ptr @ 0xbe0830 
+if rom_ver_emu is enabled, store/load value in/from ptr @ 0xbe0830
 
 0x180:
 set rom_ver_emu to value

@@ -4,8 +4,8 @@
 == by nox                                                  ==
 =============================================================
 
-The XPARAM IOP module writes PARAM values to 0xFFFE01a0 and 0xFFFE01a4. 
-In the PPC store handler for these addresses copy the PARAM value to a 
+The XPARAM IOP module writes PARAM values to 0xFFFE01a0 and 0xFFFE01a4.
+In the PPC store handler for these addresses copy the PARAM value to a
 struct in memory @ 0xbe09e0 - 0xbe0a24. From there the values are used
 by their respective functions. The XPARAM struct can written to directly
 bypassing the need to use the XPARAM IOP module.
@@ -34,7 +34,7 @@ XPARAM Struct Addr: 0xbe09e0 - 0xbe0a24
 0x40 = PARAM_MIPS_DCACHE_ON
 0x44 = PARAM_CACHE_FLASH_CHANNELS
 
-PARAM_CPU_DELAY is used to control timing: 
+PARAM_CPU_DELAY is used to control timing:
 (ppc_clk_delta * mips_clk_factor) / PARAM_CPU_DELAY or PARAM_CPU_DELAY_DPC
 
 PARAM_TIMER_LOAD_DELAY Controls load delay when reading from timer0 in ps1 mode

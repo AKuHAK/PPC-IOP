@@ -19,7 +19,7 @@ DCR 0xC = r/o, unk.
 =============================================================================
 DCR 0xD = r/w, unk. Possibly PPC debug/performance register?
     default: 0x4833c000
-    
+
     Values are often 0x48xxxxx which decodes to a valid PPC
     relative branch instruction.
 
@@ -92,7 +92,7 @@ DCR 0x33 =  r/w, Reset Line
 
     0:   r/w, ps2 mode reset
     1:   r/w, ps1 mode reset
-    2:31 r/o 
+    2:31 r/o
 
     Used to reset IOP peripherals into desired mode
 
@@ -111,7 +111,7 @@ DCR 0x35 =  r/w, Serial Clock Control Register
     UART Divisor = Serial clock / (16 x baud)
     Serial Clock * Divisor = PLB Clock
 
-    Note: PLB clock supports CPU:PLB frequency ratios N:1, N:2, N:3 
+    Note: PLB clock supports CPU:PLB frequency ratios N:1, N:2, N:3
 
     With mem mapped UART peripheral configured for 57600 baud:
     0x80000004 = 0.88uS
@@ -138,10 +138,10 @@ DCR 0x36 =  r/o, unk
 =============================================================================
 DCR 0x37 =  r/w, Power management related?
     default: 0x0
-    
+
     Each bit corresponds to a device, when set it appears to disable the
     corresponding device.
-    
+
     0x0 = all enabled
     0x1 = INTC disabled
     0x2 = APU disabled
@@ -149,15 +149,15 @@ DCR 0x37 =  r/w, Power management related?
     0x8 = SPU 1? 2? disabled?
             0x1F803800 = 0x0 instead of 0xFFFFFFF
             0x1F801810 = 0x0 instead of 0x2660000
-    
+
     0x20 = Unknown device (DCR 0x16-0x17) disabled
     0x80 = IOP SBUS inaccessible 0x1F801450
     0x100 = SIO2. If this is set mid SIO2 transfer it abruptly stops mid byte
-    
+
     0x800 = DCR-0xA8 disabled. Possibly more registers associated with this.
 
     0x2000 = USB OHCI disabled
-    
+
     0x4000 = IOP timer registers become inaccessible.
     0x8000 = DCR-0xC0 - 0xC8 disabled.
 
@@ -190,7 +190,7 @@ Very similar to PLB arbiter registers found in AMCC PPC 4xx SoCs
 DCR 0x82 = r/o, REVID?
     default: 0x00000101
 
-DCR 0x83 = r/w, unk, 
+DCR 0x83 = r/w, unk,
     default: 0xbb000000 <- Changes
     0:7  r/w
     8:31 r/o
@@ -274,7 +274,7 @@ DCR 0xB1 = r/o, unk
 
 DCR 0xB2 = r/o, unk status?
     default: 0x0
-    
+
     Appears to be equal to 0xb0 | 0xb1
 
     there are a few exceptions to this.

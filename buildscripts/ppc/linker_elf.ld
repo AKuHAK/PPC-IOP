@@ -20,11 +20,11 @@ SECTIONS {
 	}
 
 	.sdata ALIGN(4) : {
-		*(.sdata) 
+		*(.sdata)
 	}
 
 	.sdata2 ALIGN(4) : {
-		*(.sdata2) 
+		*(.sdata2)
 	}
 
 	.bss ALIGN(4) : {
@@ -33,11 +33,11 @@ SECTIONS {
 	}
 
 	.sbss ALIGN(4) : {
-		*(.sbss) 
+		*(.sbss)
 	}
 
 	.comment ALIGN(4) : {
-		*(.comment) 
+		*(.comment)
 	}
 
 	PROVIDE (_end = .);

@@ -29,7 +29,7 @@ https://git.ti.com/cgit/glsdk/glsdk-u-boot/tree/arch/powerpc/include/asm/ppc4xx-
     default: 0x00000000
 
 =============================================================================
-0x11:  - Unknown         
+0x11:  - Unknown
     default: 0x00000000
 
 =============================================================================
@@ -39,7 +39,7 @@ https://git.ti.com/cgit/glsdk/glsdk-u-boot/tree/arch/powerpc/include/asm/ppc4xx-
 =============================================================================
 0x18:  - SDRAM slave interface options register
     default: 0xe0000000
-    Only first 5 bits can be set. 
+    Only first 5 bits can be set.
 
 =============================================================================
 0x20:  - SDRAM options register 0
@@ -103,7 +103,7 @@ https://git.ti.com/cgit/glsdk/glsdk-u-boot/tree/arch/powerpc/include/asm/ppc4xx-
 
 =============================================================================
 0x84:  - Delay line control register
-    default: 0x20000094 
+    default: 0x20000094
 
 =============================================================================
 0x98:  - ECC error status register
@@ -114,7 +114,7 @@ https://git.ti.com/cgit/glsdk/glsdk-u-boot/tree/arch/powerpc/include/asm/ppc4xx-
     default: 0x00000000
 
 =============================================================================
-0xa4: 
+0xa4:
     default: 0x320b0000
 
 =============================================================================

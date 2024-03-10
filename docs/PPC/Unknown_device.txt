@@ -13,12 +13,12 @@ DCR-0x17 = register value
 Registers 0x0 - 0x3F
 
 =============================================================================
-0x0: 
+0x0:
     default: 0x0
     function: possibly a status register?
     r/w
-    
-    Reg 0x3 seems to be a decrementing timer and when it reaches zero this is 
+
+    Reg 0x3 seems to be a decrementing timer and when it reaches zero this is
     set to 0x20000. Bit 17 is set (LE)
 
 =============================================================================
@@ -33,7 +33,7 @@ Registers 0x0 - 0x3F
     writing 0x2 resets timer in 03
     writing 0x4 starts timer in 03
 
-    setting bit 2 of this register causes 0x03 to begin decrementing 
+    setting bit 2 of this register causes 0x03 to begin decrementing
     from 0xFFFFFFFF to 0; on completion register 0x0 is set to 0x20000
 
     seems to accept values 0x0-0xFFFFFFFF
@@ -43,7 +43,7 @@ Registers 0x0 - 0x3F
     default: 0xffffffff
     r/w
 
-    decrementing timer. 
+    decrementing timer.
 
     Seems to go from 0xFFFFFFFF -> 0x0 in 0x3000000A6
     PPC ticks.
@@ -207,7 +207,7 @@ Registers 0x0 - 0x3F
     default: 0x0
     upper 8 bits cannot be set.
     some bits can not be set simultaneously
-    
+
     0x0 - 0x00ffffff
     //0xfffff000 = 0x00fff000
     //0x8ffffc01 = 0x0
@@ -358,7 +358,7 @@ Registers 0x0 - 0x3F
 
 =============================================================================
 0x32:
-    r/w 
+    r/w
     default: 0x0
     0x9F000000
     first byte can only be set and not bits 1-2

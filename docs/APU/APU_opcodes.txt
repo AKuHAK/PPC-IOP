@@ -4,20 +4,20 @@
 == by nox                                                  ==
 =============================================================
 
-Special thanks to Wisi. This document builds heavily upon their work and 
+Special thanks to Wisi. This document builds heavily upon their work and
 documentation from the dpLibMod project:
 https://www.psx-place.com/threads/hdd-for-ps2-scph75000x-later-models.30696/page-2#post-255399
 
 =============================================================================
 The APU instruction format resembles the PPC X / XO instruction format
 
-  Primary OP       Rx          Ry         Rz          Secondary OP    
-[0 0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0]             
+  Primary OP       Rx          Ry         Rz          Secondary OP
+[0 0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0 0]
     31-25        25-20        20-15      15-10           10-0
 
 The primary opcode is always 0x0 [000000]
 The secondary or extended opcode always contains 0xC [1100]
-Register fields vary between instructions. 
+Register fields vary between instructions.
 
 =============================================================================
 Possible secondary opcode encoding scheme:
@@ -34,9 +34,9 @@ bit 5 = reserved always 0
 bit 6-10 =
     register number or unique number of some kind?
     0x0 = exec
-    0x1 = exec 
+    0x1 = exec
     0x2 = exec
-    0x3-0x7 = ? 
+    0x3-0x7 = ?
     0x8 = A01A PC
     0x9 = A013 Cycle Count
     0xA = A018 HI
@@ -44,9 +44,9 @@ bit 6-10 =
     0xC = ?
     0xE = A020 - A03F GP registers
     0xF = GTE registers
-    
+
     0x10 = A004 status reg
-    0x11 = A005 unk 
+    0x11 = A005 unk
     0x12 = A006 opcode << 2
     0x13 = A007 RD
 
@@ -55,7 +55,7 @@ bit 6-10 =
     0x16 = A006 opcode << 2
     0x17 = A007 RD
     0x18 = A008 opcode not shifted
-    
+
     0x19 = A009 RS
     0x1A = A00A RT
     0x1B = A00B RD
@@ -79,7 +79,7 @@ address referenced by the operand (if applicable) to Rx. It also sets condition
 register field 6 (CR6) to signify what type of instruction it is, arithmetic/logical,
 load, store, branch, or other.
 
-If there are pending interrupts or if the cycle counter has reached zero, 
+If there are pending interrupts or if the cycle counter has reached zero,
 execution will fail. That is CR6 bits will be set to 0, the cycle counter will
 not decrement, and the PC will not increment.
 
@@ -147,7 +147,7 @@ Rz: [N/A]
 Sets the current MIPS cycle count to the value stored in Ry.
 
 =============================================================================
-OPCODE: 0x25c -"amfcc" - Get MIPS cycle count 
+OPCODE: 0x25c -"amfcc" - Get MIPS cycle count
 Rx: [OUTPUT] = MIPS cycle count
 Ry: [N/A]
 Rz: [N/A]
@@ -157,7 +157,7 @@ Gets the current MIPS cycle count and stores it in Rx.
 =============================================================================
 OPCODE: 0x28c -"amthi" - Set MIPS HI register
 Rx: [N/A]
-Ry: [INPUT] = Register that contains the value to be set  
+Ry: [INPUT] = Register that contains the value to be set
 Rz: [N/A]
 
 Sets the MIPS HI register to the value at Ry.
@@ -173,7 +173,7 @@ Gets the value of MIPS HI register and stores it in Rx.
 =============================================================================
 OPCODE: 0x2cc -"amtlo" - Set MIPS LO register
 Rx: [N/A]
-Ry: [INPUT] = Register that contains the value to be set  
+Ry: [INPUT] = Register that contains the value to be set
 Rz: [N/A]
 
 Sets the MIPS lo register to the value at Ry.
@@ -197,44 +197,44 @@ TODO: Unknown.
 =============================================================================
 OPCODE: 0x38c -"amtgp" - Set MIPS GP register
 Rx: [N/A]
-Ry: [INPUT] = Register containing number of the MIPS GP register to set 
+Ry: [INPUT] = Register containing number of the MIPS GP register to set
 Rz: [INPUT] = Register containing value to be set
 
-Sets the MIPS GP register specified by the value at Ry to the value stored at Rz. 
+Sets the MIPS GP register specified by the value at Ry to the value stored at Rz.
 
 =============================================================================
 OPCODE: 0x39c -"amfgp" - Get MIPS GP register
 Rx: [OUTPUT] = Value at MIPS register
-Ry: [INPUT]  = Register containing number of MIPS GP register to get 
+Ry: [INPUT]  = Register containing number of MIPS GP register to get
 Rz: [N/A]
 
 Gets the value of the MIPS GP register specified by the value in Ry and stores
 it in Rx.
 
 =============================================================================
-OPCODE: 0x3cc -"amtgte" - Set GTE register        
+OPCODE: 0x3cc -"amtgte" - Set GTE register
 Rx: [N/A]
-Ry: [INPUT] = Register containing number of the GTE register to set 
+Ry: [INPUT] = Register containing number of the GTE register to set
 Rz: [INPUT] = Register containing value to be set
 
-Sets the GTE register specified by the value at Ry to the value stored at Rz. 
+Sets the GTE register specified by the value at Ry to the value stored at Rz.
 
 =============================================================================
 OPCODE: 0x3dc -"amfgte" - Get GTE register
 Rx: [OUTPUT] = Value at GTE register
-Ry: [INPUT]  = Register containing number of GTE register to get 
+Ry: [INPUT]  = Register containing number of GTE register to get
 Rz: [N/A]
 
 Gets the value at the GTE register specified by the value at Ry and stores it
 in Rx.
 
-This is used to access the GTE register file which contains more than 
+This is used to access the GTE register file which contains more than
 just standard GTE registers. The full range is 0x0-0xFF (see APU_registers.txt).
 
 =============================================================================
 OPCODE: 0x41c -"amf04" - Get APU register 0x4 (Reg file 1)
 Rx: [OUTPUT] = APU Status
-Ry: [N/A]  
+Ry: [N/A]
 Rz: [N/A]
 
 Register 0x4 is a status register of some kind (see APU_registers.txt).
@@ -248,15 +248,15 @@ TODO: verify
 =============================================================================
 OPCODE: 0x45c -"amf05" - Get APU register 0x5 (Reg file 1)
 Rx: [OUTPUT] = APU Register 0x5
-Ry: [N/A]  
+Ry: [N/A]
 Rz: [N/A]
 
-Currently unknown what register 0x5 is used for. 
+Currently unknown what register 0x5 is used for.
 
 =============================================================================
 OPCODE: 0x49c -"amfop" - Get opcode (shifted) APU Register 0x6 (Reg file 1)
 Rx: [OUTPUT] = Opcode of current instruction, shifted
-Ry: [N/A]  
+Ry: [N/A]
 Rz: [N/A]
 
 The exact value returned depends on whether or not the primary opcode is zero.
@@ -329,7 +329,7 @@ Gets the RT field of the current MIPS instruction and stores it in Rx
 =============================================================================
 OPCODE: 0x6dc -"amf0B_u" - Get RD field
 Rx: [OUTPUT] = RD field of current MIPS instruction
-Ry: [N/A] 
+Ry: [N/A]
 Rz: [N/A]
 
 Gets the RD field of the current MIPS instruction and stores it in Rx
@@ -337,7 +337,7 @@ Gets the RD field of the current MIPS instruction and stores it in Rx
 =============================================================================
 OPCODE: 0x71c -"amf0C_u" - Get IMM field
 Rx: [OUTPUT] = IMM field of current MIPS instruction
-Ry: [N/A] 
+Ry: [N/A]
 Rz: [N/A]
 
 Gets the IMM field of the current MIPS instruction and stores it in Rx
@@ -345,7 +345,7 @@ Gets the IMM field of the current MIPS instruction and stores it in Rx
 =============================================================================
 OPCODE: 0x75c -"amf0D_u" - Get ADDR field
 Rx: [OUTPUT] = ADDR field of current MIPS instruction
-Ry: [N/A] 
+Ry: [N/A]
 Rz: [N/A]
 
 Gets the ADDR field of the current MIPS instruction and stores it in Rx
@@ -353,7 +353,7 @@ Gets the ADDR field of the current MIPS instruction and stores it in Rx
 =============================================================================
 OPCODE: 0x79c -"amf0E_u" - Get FUNCT field
 Rx: [OUTPUT] = FUNCT field of current MIPS instruction
-Ry: [N/A] 
+Ry: [N/A]
 Rz: [N/A]
 
 Gets the FUNCT field of the current MIPS instruction and stores it in Rx
@@ -361,7 +361,7 @@ Gets the FUNCT field of the current MIPS instruction and stores it in Rx
 =============================================================================
 OPCODE: 0x7dc -"amf0F_u" - Get SHIFT field
 Rx: [OUTPUT] = SHIFT field of current MIPS instruction
-Ry: [N/A] 
+Ry: [N/A]
 Rz: [N/A]
 
 Gets the SHIFT field of the current MIPS instruction and stores it in Rx
